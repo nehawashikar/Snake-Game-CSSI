@@ -1,4 +1,4 @@
-CSSI Day 6 - Coin Collector
+CSSI Day 12 - Snake
 =================
 
 Your Project
