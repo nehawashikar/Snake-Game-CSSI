@@ -5,6 +5,8 @@
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW
  */
 
+// Solution: Version 2 (this was NOT all covered in Code Along; it includes more features to polish the game!)
+
 // Note that for this project, it's recommended that you "Show" the output
 // in a new window. Sometime "Next to The Code"-mode is buggy when dealing with
 // the up/down/left/right arrow key presses.
