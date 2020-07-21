@@ -7,10 +7,6 @@
 
 // Solution: Version 1 (this is what we went through in Code Along)
 
-// Note that for this project, it's recommended that you "Show" the output
-// in a new window. Sometime "Next to The Code"-mode is buggy when dealing with
-// the up/down/left/right arrow key presses.
-
 let backgroundColor, playerSnake, currentApple, score;
 
 function setup() {
