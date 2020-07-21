@@ -19,8 +19,12 @@ function setup() {
   colorMode(HSB, 360, 100, 100);
   backgroundColor = 95;
   frameRate(12);
+  
+  // Create Snake and Apple objects
   playerSnake = new Snake();
   currentApple = new Apple();
+  
+  // Initialize score to 0
   score = 0;
 }
 
@@ -31,9 +35,9 @@ function draw() {
   playerSnake.showSelf();
   playerSnake.checkCollisions();
   playerSnake.checkApples();
-  // The apple needs fewer methods to show up on screen.
+  // The apple needs fewer methods to show up on screen
   currentApple.showSelf();
-  // We put the score in its own function for readability.
+  // We put the score in its own function for readability
   displayScore();
 }
 
@@ -45,12 +49,13 @@ function displayScore() {
 class Snake {
   constructor() {
     this.size = 10;
-    this.x = width/2;
-    this.y = height - 10;
-    this.direction = 'N';
+    this.x = width/2; // Starts in the middle of the screen horizontally
+    this.y = height - 10; // Starts 10 away from the bottom vertically
+    this.direction = 'N'; // Initial direction the snake is moving in (north)
     this.speed = 12;
   }
 
+  // Use the direction property to determine which direction to move the snake in
   moveSelf() {
     if (this.direction === "N") {
       this.y -= this.speed;
@@ -65,6 +70,7 @@ class Snake {
     }
   }
 
+  // Display the snake as a rect
   showSelf() {
     stroke(240, 100, 100);
     noFill();
@@ -72,19 +78,24 @@ class Snake {
     noStroke();
   }
 
+  // Check if there has been a collision between the snake and apple
   checkApples() {
     // If the head of the snake collides with the apple...
     if (collideRectRect(this.x, this.y, this.size, this.size,
         currentApple.x, currentApple.y, currentApple.size, currentApple.size)) {
-      // Make a new apple, increment the score, and extend the tail.
-      score += 1;
-      currentApple = new Apple();
+      score += 1; // Increment the score
+      // Update our apple to a new apple (with a new random position)
+      currentApple = new Apple(); 
     }
   }
 
-  checkCollisions() {}
+  checkCollisions() {
+    // TODO for v2
+  }
 
-  extendTail() {}
+  extendTail() {
+     // TODO for v2
+  }
 }
 
 
@@ -114,17 +125,14 @@ function keyPressed() {
   } else {
     console.log("wrong key");
   }
+  
+   // TODO for v2: restart game when space bar is pressed
 }
 
 function restartGame() {
-  score = 0;
-  playerSnake = new Snake();
-  currentApple = new Apple();
-  loop();
+   // TODO for v2
 }
 
 function gameOver() {
-  stroke(0);
-  text("GAME OVER", 50, 50);
-  noLoop();
+   // TODO for v2
 }
