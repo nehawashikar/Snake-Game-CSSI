@@ -5,7 +5,7 @@
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW
  */
 
-let backgroundColor, playerSnake, currentApple, score
+let backgroundColor, playerSnake, currentApple, score;
 
 function setup() {
   // Canvas & color settings
