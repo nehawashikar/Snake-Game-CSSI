@@ -7,35 +7,49 @@
 
 // Solution: Version 2 - With Tail
 
-let backgroundColor, playerSnake, currentApple, score;
+let backgroundColor, playerSnake, currentApple, score, lives;
+let label = 'listening...';
+let classifier;
+let imageModelURL = 'https://teachablemachine.withgoogle.com/models/aaRjZ9wBL/';
+
+classifier = ml5.soundClassifier(imageModelURL + 'model.json');
 
 function setup() {
   // Canvas & color settings
   createCanvas(400, 400);
   colorMode(HSB, 360, 100, 100);
   backgroundColor = 95;
-  frameRate(12);
+  frameRateChanger = 6;
+  frameRate(frameRateChanger);
+  
   playerSnake = new Snake();
   currentApple = new Apple();
+  
   score = 0;
+  
 }
 
 function draw() {
   background(backgroundColor);
-  // The snake performs the following four methods:
   playerSnake.moveSelf();
   playerSnake.showSelf();
   playerSnake.checkCollisions();
   playerSnake.checkApples();
-  // The apple needs fewer methods to show up on screen.
+
   currentApple.showSelf();
-  // We put the score in its own function for readability.
+
   displayScore();
+  displayNoise();
 }
 
 function displayScore() {
   fill(0);
-  text(`Score: ${score}`, 20, 20);
+  text(`Score: ${score}`, 2000, 20);
+}
+
+function displayNoise(){
+  fill(0);
+  text('*'+label + '*', 20, height - 4);
 }
 
 class Snake {
