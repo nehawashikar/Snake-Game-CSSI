@@ -26,6 +26,7 @@ function setup() {
   currentApple = new Apple();
   
   score = 0;
+  lives = 3;
   
 }
 
@@ -38,18 +39,19 @@ function draw() {
 
   currentApple.showSelf();
 
-  displayScore();
+  displayText();
   displayNoise();
 }
 
-function displayScore() {
+function displayText() {
   fill(0);
-  text(`Score: ${score}`, 2000, 20);
+  text(`Your score is: ${score}`, 5, 15)
+  text(`You have ${lives} lives left`, 5, 30)
 }
 
 function displayNoise(){
   fill(0);
-  text('*'+label + '*', 20, height - 4);
+  text('*'+label + '*', 5, height - 4);
 }
 
 class Snake {
@@ -89,13 +91,12 @@ class Snake {
   }
 
   checkApples() {
-    // If the head of the snake collides with the apple...
     if (collideRectRect(this.x, this.y, this.size, this.size,
         currentApple.x, currentApple.y, currentApple.size, currentApple.size)) {
-      // Make a new apple, increment the score, and extend the tail.
       score += 1;
       currentApple = new Apple();
       this.extendTail();
+      frameRateChanger += 1;
     }
   }
 
@@ -105,17 +106,16 @@ class Snake {
         if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
           gameOver();
         }
-        // This helper text will show the index of each tail segment.
-        // text(i, this.tail[i].x, this.tail[i].y)
+        if (this.x >= width || this.x <= 0 || this.y >= height || this.y <= 0) {
+          lives--;
+        }
+        text(i, this.tail[i].x, this.tail[i].y)
       }
     }
   }
 
   extendTail() {
-    // Add a new segment by duplicating whatever you find at the end of the tail.
     let lastTailSegment = this.tail[this.tail.length - 1];
-    // Push a new tail segment to the end, using the same position as the
-    // current last segment of the tail.
     this.tail.push(new TailSegment(lastTailSegment.x, lastTailSegment.y));
   }
 }
