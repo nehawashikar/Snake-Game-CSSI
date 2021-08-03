@@ -85,10 +85,10 @@ function draw() {
       lives = 3;
       powers2.x1 = random(width);
       powers2.y1 = random(height);
-      powers2.x2 = powers2.x1 + 10;
-      powers2.y2 = powers2.y1 - 20;
-      powers2.x3 = powers2.x1 - 10;
-      powers2.y3 = powers2.y1 - 20;
+      powers2.x2 = powers2.x1 + 8;
+      powers2.y2 = powers2.y1 - 16;
+      powers2.x3 = powers2.x1 - 8;
+      powers2.y3 = powers2.y1 - 16;
     }
   }
   
@@ -293,25 +293,25 @@ class PowerUpResetLives{
   constructor(){
     this.x1 = random(width);
     this.y1 = random(height);
-    this.x2 = this.x1 + 10;
-    this.y2 = this.y1 - 20;
-    this.x3 = this.x1 - 10;
-    this.y3 = this.y1 - 20;
+    this.x2 = this.x1 + 8;
+    this.y2 = this.y1 - 16;
+    this.x3 = this.x1 - 8;
+    this.y3 = this.y1 - 16;
   }
   move(){
-    if(time % 20 == 0 && time > 0){
+    if(time % 40 == 0 && time > 0){
       this.x1 = random(width);
       this.y1 = random(height);
-      this.x2 = this.x1 + 10;
-      this.y2 = this.y1 - 20;
-      this.x3 = this.x1 - 10;
-      this.y3 = this.y1 - 20;
+      this.x2 = this.x1 + 8;
+      this.y2 = this.y1 - 16;
+      this.x3 = this.x1 - 8;
+      this.y3 = this.y1 - 16;
     }
   }
   display(){
     fill(random(360), 80, 100);
     textSize(10);
-    text('Reset \n Lives', this.x1 - 15, this.y1 - 35);
+    text('Reset \n Lives', this.x1 - 15, this.y1 - 30);
     triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
     textSize(12);
   }
