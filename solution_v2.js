@@ -59,9 +59,11 @@ function draw() {
     powers.move();
     powers.display();
     
-    let hit = collideRectRect(powers.x, powers.y, 20, 20, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
-    if(hit){
+    let scoreInc = collideRectRect(powers.x, powers.y, 20, 20, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+    if(scoreInc){
       score += 2;
+      powers.x = random(width);
+      powers.y = random(height);
     }
   }
   
@@ -197,12 +199,6 @@ class Snake {
       this.direction = "E";
       currentApple = new Apple();
     }
-    
-    //collisions with power-ups
-   // let hit = collideRectRect(po.x, po.y, 20, 20, this.x, this.y, this.size, this.size);
-   // if(hit){
-    //  score += 2;
-   // }
     
     //collision of snake with itself
     if (this.tail.length > 2) {
