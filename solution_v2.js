@@ -33,6 +33,12 @@ function setup() {
     power.push(p);
   }
   
+  power2 = [];
+  for (let i = 0; i < 10; i++){
+    let p2 = new PowerUpResetLives();
+    power2.push(p2);
+  }
+  
   gameIsOver = false;
   score = 0;
   lives = 3;
@@ -64,6 +70,16 @@ function draw() {
       score += 2;
       powers.x = random(width);
       powers.y = random(height);
+    }
+  }
+  
+  for (let powers2 of power2){
+    powers2.move();
+    powers2.display();
+    
+    let livesReset1 = collidePointTriangle(playerSnake.x, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    if(livesReset1){
+      
     }
   }
   
@@ -252,7 +268,7 @@ class PowerUpScore{
   move(){
     if(time % 30 == 0 && time > 0){
       this.x = random(width);
-      this.y = random(60,470);
+      this.y = random(height);
     }
   }
   display(){
@@ -265,16 +281,23 @@ class PowerUpResetLives{
   constructor(){
     this.x1 = random(width);
     this.y1 = random(height);
-    
+    this.x2 = this.x1 + 20;
+    this.y2 = this.y1 - 40;
+    this.x3 = this.x1 - 20;
+    this.y3 = this.y1 - 40;
   }
   move(){
     if(time % 20 == 0 && time > 0){
-      this.x = random(width);
-      this.y = random(60,470);
+      this.x1 = random(width);
+      this.y1 = random(height);
+      this.x2 = this.x1 + 20;
+      this.y2 = this.y1 - 40;
+      this.x3 = this.x1 - 20;
+      this.y3 = this.y1 - 40;
     }
   }
   display(){
     fill(random(360), 20, 50);
-    rect(this.x, this.y, 20, 20);
+    triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
   }
 }
