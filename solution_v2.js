@@ -263,8 +263,9 @@ class PowerUpScore{
 
 class PowerUpResetLives{
   constructor(){
-    this.x = random(width);
-    this.y = random(height);
+    this.x1 = random(width);
+    this.y1 = random(height);
+    
   }
   move(){
     if(time % 20 == 0 && time > 0){
