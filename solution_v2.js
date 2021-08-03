@@ -54,9 +54,7 @@ function setup() {
 }
 
 function draw() {
-  background(random(50,100));
-  
-  
+  background(backgroundColor); //random(50,100)
   
   playerSnake.moveSelf();
   playerSnake.showSelf();
@@ -65,54 +63,10 @@ function draw() {
 
   currentApple.showSelf();
 
+  powerAndObs();
   displayText();
   displayNoise();
   handleTime();
-  
-  for (let powers of power){
-    powers.move();
-    powers.display();
-    
-    let scoreInc = collideRectRect(powers.x, powers.y, 15, 15, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
-    if(scoreInc){
-      score += 2;
-      powers.x = random(width);
-      powers.y = random(height);
-    }
-  }
-  
-  for (let powers2 of power2){
-    powers2.move();
-    powers2.display();
-    
-    let livesReset1 = collidePointTriangle(playerSnake.x, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
-    let livesReset2 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
-    let livesReset3 = collidePointTriangle(playerSnake.x, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
-    let livesReset4 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
-    if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
-      lives = 5;
-      powers2.x1 = random(width);
-      powers2.y1 = random(height);
-      powers2.x2 = powers2.x1 + 8;
-      powers2.y2 = powers2.y1 + 16;
-      powers2.x3 = powers2.x1 - 8;
-      powers2.y3 = powers2.y1 + 16;
-    }
-  }
-  
-  for (let theObs of obs){
-    theObs.move();
-    theObs.display();
-    
-    let scoreInc = collideRectRect(theObs.x, theObs.y, theObs.rectWidth, theObs.rectHeight, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
-    if(scoreInc){
-      score = 0;
-      theObs.x = random(width);
-      theObs.y = random(height);
-      theObs.rectWidth = random(10,16);
-      theObs.rectHeight = random(5,10);
-    }
-  }
   
   if(lives <= 0 || gameIsOver){
     gameOver();
@@ -157,19 +111,64 @@ function handleTime(){
   time++;
 }
 
+function powerAndObs(){
+  for (let powers of power){
+    powers.move();
+    powers.display();
+    
+    let scoreInc = collideRectRect(powers.x, powers.y, 15, 15, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+    if(scoreInc){
+      score += 2;
+      powers.x = random(width);
+      powers.y = random(height);
+    }
+  }
+  
+  for (let powers2 of power2){
+    powers2.move();
+    powers2.display();
+    
+    let livesReset1 = collidePointTriangle(playerSnake.x, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    let livesReset2 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    let livesReset3 = collidePointTriangle(playerSnake.x, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    let livesReset4 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
+      lives = 5;
+      powers2.x1 = random(width);
+      powers2.y1 = random(height);
+      powers2.x2 = powers2.x1 + 8;
+      powers2.y2 = powers2.y1 + 16;
+      powers2.x3 = powers2.x1 - 8;
+      powers2.y3 = powers2.y1 + 16;
+    }
+  }
+  
+  for (let theObs of obs){
+    theObs.move();
+    theObs.display();
+    
+    let scoreInc = collideRectRect(theObs.x, theObs.y, theObs.rectWidth, theObs.rectHeight, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+    if(scoreInc){
+      score = 0;
+      theObs.x = random(width);
+      theObs.y = random(height);
+      theObs.rectWidth = random(10,16);
+      theObs.rectHeight = random(5,10);
+    }
+  }
+}
+
 function keyPressed() {
   
   if (keyCode === UP_ARROW && playerSnake.direction != 'S') {
     playerSnake.direction = "N";
-  } else if (keyCode === DOWN_ARROW && playerSnake.direction != 'N') {
+  }else if (keyCode === DOWN_ARROW && playerSnake.direction != 'N') {
     playerSnake.direction = "S";
-  } else if (keyCode === RIGHT_ARROW && playerSnake.direction != 'W') {
+  }else if (keyCode === RIGHT_ARROW && playerSnake.direction != 'W') {
     playerSnake.direction = "E";
-  } else if (keyCode === LEFT_ARROW && playerSnake.direction != 'E') {
+  }else if (keyCode === LEFT_ARROW && playerSnake.direction != 'E') {
     playerSnake.direction = "W";
-  } 
-  
-  if (keyCode === 32) {
+  }else if (keyCode === 32) {
     restartGame();
   }
 }
@@ -233,7 +232,7 @@ class Snake {
       score += 1;
       currentApple = new Apple();
       this.extendTail();
-      frameRateChanger += 1;
+      //frameRateChanger += 1;
     }
   }
 
