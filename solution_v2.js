@@ -41,6 +41,7 @@ function draw() {
 
   displayText();
   displayNoise();
+  gotResult();
 }
 
 function displayText() {
@@ -54,11 +55,20 @@ function displayNoise(){
   text('*'+label + '*', 5, height - 4);
 }
 
+function gotResult(error, results){
+  if(error){
+    console.error('error');
+    return;
+  }
+  label = results[0].label; 
+  controlSnake();
+}
+
 class Snake {
   constructor() {
     this.size = 10;
     this.x = width/2;
-    this.y = height - 10;
+    this.y = height - this.size;
     this.direction = 'N';
     this.speed = 12;
     this.tail = [new TailSegment(this.x, this.y)];
@@ -146,21 +156,16 @@ class Apple {
   }
 }
 
-function keyPressed() {
-  console.log("key pressed: ", keyCode);
-  if (keyCode === UP_ARROW && playerSnake.direction != 'S') {
+function controlSnake(){
+  if (label === 'Up' && playerSnake.direction != "S") {
     playerSnake.direction = "N";
-  } else if (keyCode === DOWN_ARROW && playerSnake.direction != 'N') {
+  } else if (label === 'Down' && playerSnake.direction != "N") {
     playerSnake.direction = "S";
-  } else if (keyCode === RIGHT_ARROW && playerSnake.direction != 'W') {
+  } else if (label === 'Right' && playerSnake.direction != "W") {
     playerSnake.direction = "E";
-  } else if (keyCode === LEFT_ARROW && playerSnake.direction != 'E') {
+  } else if (label === 'Left' && playerSnake.direction != "E") {
     playerSnake.direction = "W";
-  } else if (keyCode === 32) {
-    restartGame();
-  } else {
-    console.log("wrong key");
-  }
+  }  
 }
 
 function restartGame() {
