@@ -31,6 +31,7 @@ function setup() {
   score = 0;
   lives = 3;
   time = 0;
+  timeMultiple = false;
   
 }
 
@@ -82,6 +83,14 @@ function controlSnake(){
   } else if (label === 'Left' && playerSnake.direction != "E") {
     playerSnake.direction = "W";
   }  
+}
+
+function handleTime(){
+  fill(color(20,100,100));
+  text(`Time remaining: ${time}`, 150, 20);
+  if(time > 0){
+    time -= 1;
+  }
 }
 
 function restartGame() {
@@ -181,7 +190,6 @@ class Snake {
   }
 
   extendTail() {
-    fill(random(360),50,100);
     let lastTailSegment = this.tail[this.tail.length - 1];
     this.tail.push(new TailSegment(lastTailSegment.x, lastTailSegment.y));
   }
@@ -195,7 +203,7 @@ class TailSegment {
   }
 
   showSelf() {
-    fill(0);
+    fill(random(360),50,70);
     rect(this.x, this.y, this.size, this.size);
   }
 }
