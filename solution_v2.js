@@ -136,9 +136,17 @@ function handleTime(){
   time++;
 }
 
+function keyPressed() {
+    if (keyCode === 32) {
+      restartGame();
+    }
+}
+
 function restartGame() {
   score = 0;
+  lives = 3;
   time = 0;
+  frameRateChanger = 6;
   playerSnake = new Snake();
   currentApple = new Apple();
   loop();
@@ -233,8 +241,7 @@ class Snake {
         }
         text(i, this.tail[i].x, this.tail[i].y)
       }
-    }
-    
+    } 
   }
 
   extendTail() {
@@ -315,4 +322,8 @@ class PowerUpResetLives{
     triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
     textSize(12);
   }
+}
+
+class Obstacle{
+  
 }
