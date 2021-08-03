@@ -211,6 +211,7 @@ class Snake {
     }
     
     //collisions with power-ups
+    let hit = collideRectRect(PowerUps.x, PowerUps.y, );
     
     
     //collision of snake with itself
