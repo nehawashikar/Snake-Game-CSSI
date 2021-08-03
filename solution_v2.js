@@ -282,8 +282,8 @@ class PowerUpScore{
   }
   display(){
     fill(random(360), 80, 100);
-    textSize(10);
-    text('  Score \nIncrease', this.x - 11, this.y - 14);
+    textSize(9);
+    text('  Score \nIncrease', this.x - 10, this.y - 14);
     rect(this.x, this.y, 15, 15);
     textSize(12);
   }
@@ -310,8 +310,8 @@ class PowerUpResetLives{
   }
   display(){
     fill(random(360), 80, 100);
-    textSize(10);
-    text('Reset \n Lives', this.x1 - 15, this.y1 - 30);
+    textSize(9);
+    text('Reset \n Lives', this.x1 - 13, this.y1 - 30);
     triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
     textSize(12);
   }
