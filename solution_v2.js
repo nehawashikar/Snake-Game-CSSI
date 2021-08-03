@@ -16,14 +16,17 @@ classifier = ml5.soundClassifier(imageModelURL + 'model.json');
 
 function setup() {
   // Canvas & color settings
-  createCanvas(400, 400);
+  createCanvas(500, 500);
   colorMode(HSB, 360, 100, 100);
   backgroundColor = 95;
   frameRateChanger = 6;
   frameRate(frameRateChanger);
   
+  classifier.classify(gotResult);
+  
   playerSnake = new Snake();
   currentApple = new Apple();
+
   
   score = 0;
   lives = 3;
@@ -41,7 +44,7 @@ function draw() {
 
   displayText();
   displayNoise();
-  gotResult();
+
 }
 
 function displayText() {
@@ -117,6 +120,7 @@ class Snake {
           gameOver();
         }
         if (this.x >= width || this.x <= 0 || this.y >= height || this.y <= 0) {
+          
           lives--;
         }
         text(i, this.tail[i].x, this.tail[i].y)
