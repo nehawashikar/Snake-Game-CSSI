@@ -46,6 +46,9 @@ function draw() {
 
   displayText();
   displayNoise();
+  if(lives <= 0 || gameIsOver){
+    gameOver();
+  }
 
 }
 
@@ -67,6 +70,31 @@ function gotResult(error, results){
   }
   label = results[0].label; 
   controlSnake();
+}
+
+function controlSnake(){
+  if (label === 'Up' && playerSnake.direction != "S") {
+    playerSnake.direction = "N";
+  } else if (label === 'Down' && playerSnake.direction != "N") {
+    playerSnake.direction = "S";
+  } else if (label === 'Right' && playerSnake.direction != "W") {
+    playerSnake.direction = "E";
+  } else if (label === 'Left' && playerSnake.direction != "E") {
+    playerSnake.direction = "W";
+  }  
+}
+
+function restartGame() {
+  score = 0;
+  playerSnake = new Snake();
+  currentApple = new Apple();
+  loop();
+}
+
+function gameOver() {
+  stroke(0);
+  text("GAME OVER", 50, 50);
+  noLoop();
 }
 
 class Snake {
@@ -144,7 +172,7 @@ class Snake {
     if (this.tail.length > 2) {
       for (let i=1; i < this.tail.length; i++) {
         if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
-          gameOver();
+          gameIsOver = true;
         }
         text(i, this.tail[i].x, this.tail[i].y)
       }
@@ -153,6 +181,7 @@ class Snake {
   }
 
   extendTail() {
+    fill(random(360),50,100);
     let lastTailSegment = this.tail[this.tail.length - 1];
     this.tail.push(new TailSegment(lastTailSegment.x, lastTailSegment.y));
   }
@@ -182,29 +211,4 @@ class Apple {
     fill(0, 80, 80);
     rect(this.x, this.y, this.size, this.size);
   }
-}
-
-function controlSnake(){
-  if (label === 'Up' && playerSnake.direction != "S") {
-    playerSnake.direction = "N";
-  } else if (label === 'Down' && playerSnake.direction != "N") {
-    playerSnake.direction = "S";
-  } else if (label === 'Right' && playerSnake.direction != "W") {
-    playerSnake.direction = "E";
-  } else if (label === 'Left' && playerSnake.direction != "E") {
-    playerSnake.direction = "W";
-  }  
-}
-
-function restartGame() {
-  score = 0;
-  playerSnake = new Snake();
-  currentApple = new Apple();
-  loop();
-}
-
-function gameOver() {
-  stroke(0);
-  text("GAME OVER", 50, 50);
-  noLoop();
 }
