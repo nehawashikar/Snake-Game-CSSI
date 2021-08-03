@@ -47,6 +47,7 @@ function draw() {
 
   displayText();
   displayNoise();
+  handleTime();
   if(lives <= 0 || gameIsOver){
     gameOver();
   }
@@ -87,14 +88,13 @@ function controlSnake(){
 
 function handleTime(){
   fill(color(20,100,100));
-  text(`Time remaining: ${time}`, 150, 20);
-  if(time > 0){
-    time -= 1;
-  }
+  text(`Time taken to complete level: ${time}`, 150, 20);
+  time++;
 }
 
 function restartGame() {
   score = 0;
+  time = 0;
   playerSnake = new Snake();
   currentApple = new Apple();
   loop();
@@ -102,6 +102,7 @@ function restartGame() {
 
 function gameOver() {
   stroke(0);
+  fill(0);
   text("GAME OVER", 50, 50);
   noLoop();
 }
@@ -153,6 +154,8 @@ class Snake {
   }
 
   checkCollisions() {
+    
+    //collisions with the canvas borders
     if (this.y >= height) {
       lives--;
       this.y = height - this.size; 
@@ -178,6 +181,10 @@ class Snake {
       currentApple = new Apple();
     }
     
+    //collisions with power-ups
+    
+    
+    //collision of snake with itself
     if (this.tail.length > 2) {
       for (let i=1; i < this.tail.length; i++) {
         if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
