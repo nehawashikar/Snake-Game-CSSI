@@ -54,11 +54,9 @@ function setup() {
 }
 
 function draw() {
-  background(backgroundColor);
+  background(random(50,100));
   
-  fill(200, 10, 80);
-  rect(0, 0, width, 60);
-  rect(0, height-30, width, 30);
+  
   
   playerSnake.moveSelf();
   playerSnake.showSelf();
@@ -160,9 +158,20 @@ function handleTime(){
 }
 
 function keyPressed() {
-    if (keyCode === 32) {
-      restartGame();
-    }
+  
+  if (keyCode === UP_ARROW && playerSnake.direction != 'S') {
+    playerSnake.direction = "N";
+  } else if (keyCode === DOWN_ARROW && playerSnake.direction != 'N') {
+    playerSnake.direction = "S";
+  } else if (keyCode === RIGHT_ARROW && playerSnake.direction != 'W') {
+    playerSnake.direction = "E";
+  } else if (keyCode === LEFT_ARROW && playerSnake.direction != 'E') {
+    playerSnake.direction = "W";
+  } 
+  
+  if (keyCode === 32) {
+    restartGame();
+  }
 }
 
 function restartGame() {
