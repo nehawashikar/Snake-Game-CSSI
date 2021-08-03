@@ -114,20 +114,21 @@ class Snake {
   }
 
   checkCollisions() {
+    if (this.x >= width || this.x <= 0 || this.y >= height || this.y <= 0) {
+      lives--;
+      this.y = height - this.size; 
+      this.direction = "N";
+      //currentApple = new Apple();
+    }
     if (this.tail.length > 2) {
       for (let i=1; i < this.tail.length; i++) {
         if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
           gameOver();
         }
-        if (this.x >= width || this.x <= 0 || this.y >= height || this.y <= 0) {
-          lives--;
-          this.y = height - this.size; 
-          this.direction = "N";
-          currentApple = new Apple();
-        }
         text(i, this.tail[i].x, this.tail[i].y)
       }
     }
+    
   }
 
   extendTail() {
