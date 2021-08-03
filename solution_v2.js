@@ -26,7 +26,12 @@ function setup() {
   
   playerSnake = new Snake();
   currentApple = new Apple();
-  power = new PowerUps;
+  
+  power = [];
+  for (let i = 0; i < 3; i++){
+    let p = new PowerUps();
+    power.push(p);
+  }
   
   gameIsOver = false;
   score = 0;
@@ -49,7 +54,13 @@ function draw() {
   displayText();
   displayNoise();
   handleTime();
-  displayPowerUps();
+  //displayPowerUps();
+  
+  for (let powers of power){
+    powers.move();
+    powers.display();
+  }
+  
   if(lives <= 0 || gameIsOver){
     gameOver();
   }
@@ -95,7 +106,19 @@ function handleTime(){
 }
 
 function displayPowerUps(){
-  
+  if (time%27 == 0){
+    powerUp = new PowerUps;
+    timeMultiple = true;
+  }
+  else if (time%13 == 0) {
+    powerUp.x1 = 0
+    powerUp.y1 = 0
+    powerUp.x2 = powerUp.x1 + 20;
+    powerUp.y2 = powerUp.y1 - 40;
+    powerUp.x3 = powerUp.x2 + 20;
+    powerUp.y3 = powerUp.y1;
+    timeMultiple = false;
+  }
 }
 
 function restartGame() {
@@ -235,6 +258,23 @@ class Apple {
 }
 
 class PowerUps{
+  constructor(){
+    this.x = random(width);
+    this.y = random(60,470);
+  }
+  move(){
+    if(time % 500 == 0 && time > 0){
+      this.x = random(width);
+      this.y = random(60,470);
+    }
+  }
+  display(){
+    fill(random(360), 100, 100);
+    rect(this.x, this.y, 10, 10);
+  }
+}
+/*
+class PowerUps{
   constructor() {
     this.x1 = random(100, width-200);
     this.y1 = random(100, height-200);
@@ -250,4 +290,4 @@ class PowerUps{
       triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
     }
   }
-}
+}*/
