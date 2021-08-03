@@ -28,13 +28,13 @@ function setup() {
   currentApple = new Apple();
   
   power = [];
-  for (let i = 0; i < 2; i++){
+  for (let i = 0; i < 3; i++){
     let p = new PowerUpScore();
     power.push(p);
   }
   
   power2 = [];
-  for (let i = 0; i < 10; i++){
+  for (let i = 0; i < 3; i++){
     let p2 = new PowerUpResetLives();
     power2.push(p2);
   }
@@ -78,8 +78,17 @@ function draw() {
     powers2.display();
     
     let livesReset1 = collidePointTriangle(playerSnake.x, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
-    if(livesReset1){
-      
+    let livesReset2 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    let livesReset3 = collidePointTriangle(playerSnake.x, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    let livesReset4 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
+    if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
+      lives = 3;
+      powers2.x1 = random(width);
+      powers2.y1 = random(height);
+      powers2.x2 = powers2.x1 + 10;
+      powers2.y2 = powers2.y1 - 20;
+      powers2.x3 = powers2.x1 - 10;
+      powers2.y3 = powers2.y1 - 20;
     }
   }
   
