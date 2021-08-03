@@ -29,7 +29,7 @@ function setup() {
   
   power = [];
   for (let i = 0; i < 2; i++){
-    let p = new PowerUpsScore();
+    let p = new PowerUpScore();
     power.push(p);
   }
   
@@ -244,7 +244,7 @@ class Apple {
   }
 }
 
-class PowerUpsScore{
+class PowerUpScore{
   constructor(){
     this.x = random(width);
     this.y = random(60,470);
@@ -260,3 +260,5 @@ class PowerUpsScore{
     rect(this.x, this.y, 20, 20);
   }
 }
+
+
