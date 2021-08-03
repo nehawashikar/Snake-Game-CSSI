@@ -39,9 +39,15 @@ function setup() {
     power2.push(p2);
   }
   
+  obs = [];
+  for (let i = 0; i < 3; i++){
+    let o = new Obstacle();
+    obs.push(o);
+  }
+  
   gameIsOver = false;
   score = 0;
-  lives = 3;
+  lives = 5;
   time = 0;
   timeMultiple = false;
   
@@ -82,13 +88,27 @@ function draw() {
     let livesReset3 = collidePointTriangle(playerSnake.x, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
     let livesReset4 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
     if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
-      lives = 3;
+      lives = 5;
       powers2.x1 = random(width);
       powers2.y1 = random(height);
       powers2.x2 = powers2.x1 + 8;
       powers2.y2 = powers2.y1 + 16;
       powers2.x3 = powers2.x1 - 8;
       powers2.y3 = powers2.y1 + 16;
+    }
+  }
+  
+  for (let theObs of obs){
+    theObs.move();
+    theObs.display();
+    
+    let scoreInc = collideRectRect(theObs.x, theObs.y, theObs.rectWidth, theObs.rectHeight, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+    if(scoreInc){
+      score = 0;
+      theObs.x = random(width);
+      theObs.y = random(height);
+      theObs.rectWidth = random(10,16);
+      theObs.rectHeight = random(5,10);
     }
   }
   
@@ -143,7 +163,7 @@ function keyPressed() {
 
 function restartGame() {
   score = 0;
-  lives = 3;
+  lives = 5;
   time = 0;
   frameRateChanger = 6;
   playerSnake = new Snake();
@@ -288,10 +308,10 @@ class PowerUpScore{
   }
   display(){
     fill(random(360), 80, 100);
-    textSize(9);
-    text('  Score \nIncrease', this.x - 10, this.y - 14);
+    //textSize(9);
+    //text('  Score \nIncrease', this.x - 10, this.y - 14);
     rect(this.x, this.y, 15, 15);
-    textSize(12);
+    //textSize(12);
   }
 }
 
@@ -316,10 +336,10 @@ class PowerUpResetLives{
   }
   display(){
     fill(random(360), 80, 100);
-    textSize(9);
-    text('Reset \n Lives', this.x1 - 12.5, this.y1 + 25);
+    //textSize(9);
+    //text('Reset \n Lives', this.x1 - 12.5, this.y1 + 25);
     triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
-    textSize(12);
+    //textSize(12);
   }
 }
 
@@ -327,20 +347,22 @@ class Obstacle{
   constructor(){
     this.x = random(width);
     this.y = random(height);
-    this.rectWidth = 16;
-    this.rectHeight = 8;
+    this.rectWidth = random(10,16);
+    this.rectHeight = random(5,10);
   }
   move(){
-    if(time % 30 == 0 && time > 0){
+    if(time % 10 == 0 && time > 0){
       this.x = random(width);
       this.y = random(height);
+      this.rectWidth = random(10,16);
+      this.rectHeight = random(5,10);
     }
   }
   display(){
-    fill(0, 100, 50);
-    textSize(9);
-    text('Score Decrease', this.x - 10, this.y - 14);
-    rect(this.x, this.y, 15, 15);
-    textSize(12);
+    fill(random(360), 100, 40);
+    //textSize(9);
+    //text('Score Decrease', this.x, this.y);
+    rect(this.x, this.y, this.rectWidth, this.rectHeight);
+    //textSize(12);
   }
 }
