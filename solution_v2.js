@@ -15,7 +15,7 @@ let imageModelURL = 'https://teachablemachine.withgoogle.com/models/aaRjZ9wBL/';
 classifier = ml5.soundClassifier(imageModelURL + 'model.json');
 
 function setup() {
-  // Canvas & color settings
+
   createCanvas(500, 500);
   colorMode(HSB, 360, 100, 100);
   backgroundColor = 95;
@@ -26,15 +26,16 @@ function setup() {
   
   playerSnake = new Snake();
   currentApple = new Apple();
-
   
   score = 0;
   lives = 3;
+  time = 0;
   
 }
 
 function draw() {
   background(backgroundColor);
+  
   playerSnake.moveSelf();
   playerSnake.showSelf();
   playerSnake.checkCollisions();
@@ -116,13 +117,13 @@ class Snake {
   checkCollisions() {
     if (this.y >= height) {
       lives--;
-      this.y = this.size; 
+      this.y = height - this.size; 
       this.direction = "N";
       currentApple = new Apple();
     }
     if (this.y <= 0) {
       lives--;
-      this.y = height - this.size; 
+      this.y = this.size; 
       this.direction = "S";
       currentApple = new Apple();
     }
