@@ -114,12 +114,31 @@ class Snake {
   }
 
   checkCollisions() {
-    if (this.x >= width || this.x <= 0 || this.y >= height || this.y <= 0) {
+    if (this.y >= height) {
+      lives--;
+      this.y = this.size; 
+      this.direction = "N";
+      currentApple = new Apple();
+    }
+    if (this.y <= 0) {
       lives--;
       this.y = height - this.size; 
-      this.direction = "N";
-      //currentApple = new Apple();
+      this.direction = "S";
+      currentApple = new Apple();
     }
+    if (this.x >= width) {
+      lives--;
+      this.x = width - this.size; 
+      this.direction = "W";
+      currentApple = new Apple();
+    }
+    if (this.x <= 0) {
+      lives--;
+      this.x = this.size; 
+      this.direction = "E";
+      currentApple = new Apple();
+    }
+    
     if (this.tail.length > 2) {
       for (let i=1; i < this.tail.length; i++) {
         if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
