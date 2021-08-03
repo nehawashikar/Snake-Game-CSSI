@@ -95,7 +95,6 @@ function draw() {
   if(lives <= 0 || gameIsOver){
     gameOver();
   }
-
 }
 
 function displayText() {
@@ -325,5 +324,23 @@ class PowerUpResetLives{
 }
 
 class Obstacle{
-  
+  constructor(){
+    this.x = random(width);
+    this.y = random(height);
+    this.rectWidth = 16;
+    this.rectHeight = 8;
+  }
+  move(){
+    if(time % 30 == 0 && time > 0){
+      this.x = random(width);
+      this.y = random(height);
+    }
+  }
+  display(){
+    fill(0, 100, 50);
+    textSize(9);
+    text('Score Decrease', this.x - 10, this.y - 14);
+    rect(this.x, this.y, 15, 15);
+    textSize(12);
+  }
 }
