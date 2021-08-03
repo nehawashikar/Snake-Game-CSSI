@@ -26,12 +26,16 @@ function setup() {
   
   playerSnake = new Snake();
   currentApple = new Apple();
-  po = new PowerUps();
   
   power = [];
   for (let i = 0; i < 10; i++){
     let p = new PowerUps();
     power.push(p);
+    
+    let hit = collideRectRect(p.x, p.y, 20, 20, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+    if(hit){
+      score += 2;
+    }
   }
   
   gameIsOver = false;
@@ -55,11 +59,15 @@ function draw() {
   displayText();
   displayNoise();
   handleTime();
-  //displayPowerUps();
   
   for (let powers of power){
     powers.move();
     powers.display();
+    
+    let hit = collideRectRect(powers.x, powers.y, 20, 20, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+    if(hit){
+      score += 2;
+    }
   }
   
   if(lives <= 0 || gameIsOver){
@@ -104,22 +112,6 @@ function handleTime(){
   fill(color(20,100,100));
   text(`Time taken in this level: ${time}`, 150, 20);
   time++;
-}
-
-function displayPowerUps(){
-  if (time%27 == 0){
-    powerUp = new PowerUps;
-    timeMultiple = true;
-  }
-  else if (time%13 == 0) {
-    powerUp.x1 = 0
-    powerUp.y1 = 0
-    powerUp.x2 = powerUp.x1 + 20;
-    powerUp.y2 = powerUp.y1 - 40;
-    powerUp.x3 = powerUp.x2 + 20;
-    powerUp.y3 = powerUp.y1;
-    timeMultiple = false;
-  }
 }
 
 function restartGame() {
@@ -212,10 +204,10 @@ class Snake {
     }
     
     //collisions with power-ups
-    let hit = collideRectRect(po.x, po.y, 20, 20, this.x, this.y, this.size, this.size);
-    if(hit){
-      score += 2;
-    }
+   // let hit = collideRectRect(po.x, po.y, 20, 20, this.x, this.y, this.size, this.size);
+   // if(hit){
+    //  score += 2;
+   // }
     
     //collision of snake with itself
     if (this.tail.length > 2) {
