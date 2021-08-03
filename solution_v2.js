@@ -120,8 +120,10 @@ class Snake {
           gameOver();
         }
         if (this.x >= width || this.x <= 0 || this.y >= height || this.y <= 0) {
-          
           lives--;
+          this.y = height - this.size; 
+          this.direction = "N";
+          currentApple = new Apple();
         }
         text(i, this.tail[i].x, this.tail[i].y)
       }
