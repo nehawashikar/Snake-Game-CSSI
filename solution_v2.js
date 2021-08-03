@@ -26,9 +26,10 @@ function setup() {
   
   playerSnake = new Snake();
   currentApple = new Apple();
+  po = new PowerUps();
   
   power = [];
-  for (let i = 0; i < 4; i++){
+  for (let i = 0; i < 10; i++){
     let p = new PowerUps();
     power.push(p);
   }
@@ -101,7 +102,7 @@ function controlSnake(){
 
 function handleTime(){
   fill(color(20,100,100));
-  text(`Time taken to complete level: ${time}`, 150, 20);
+  text(`Time taken in this level: ${time}`, 150, 20);
   time++;
 }
 
@@ -211,8 +212,10 @@ class Snake {
     }
     
     //collisions with power-ups
-    let hit = collideRectRect(PowerUps.x, PowerUps.y, );
-    
+    let hit = collideRectRect(po.x, po.y, 20, 20, this.x, this.y, this.size, this.size);
+    if(hit){
+      score += 2;
+    }
     
     //collision of snake with itself
     if (this.tail.length > 2) {
