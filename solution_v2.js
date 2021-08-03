@@ -247,7 +247,7 @@ class Apple {
 class PowerUpScore{
   constructor(){
     this.x = random(width);
-    this.y = random(60,470);
+    this.y = random(height);
   }
   move(){
     if(time % 30 == 0 && time > 0){
@@ -261,4 +261,19 @@ class PowerUpScore{
   }
 }
 
-
+class PowerUpResetLives{
+  constructor(){
+    this.x = random(width);
+    this.y = random(height);
+  }
+  move(){
+    if(time % 20 == 0 && time > 0){
+      this.x = random(width);
+      this.y = random(60,470);
+    }
+  }
+  display(){
+    fill(random(360), 20, 50);
+    rect(this.x, this.y, 20, 20);
+  }
+}
