@@ -28,14 +28,9 @@ function setup() {
   currentApple = new Apple();
   
   power = [];
-  for (let i = 0; i < 10; i++){
+  for (let i = 0; i < 2; i++){
     let p = new PowerUps();
     power.push(p);
-    
-    let hit = collideRectRect(p.x, p.y, 20, 20, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
-    if(hit){
-      score += 2;
-    }
   }
   
   gameIsOver = false;
