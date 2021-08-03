@@ -92,6 +92,13 @@ function handleTime(){
   time++;
 }
 
+function displayPowerUps(){
+  if (time % 100 == 0){
+    powerUp = new PowerUps;
+    timeMultiple = true;
+  }
+}
+
 function restartGame() {
   score = 0;
   time = 0;
@@ -225,5 +232,21 @@ class Apple {
   showSelf() {
     fill(0, 80, 80);
     rect(this.x, this.y, this.size, this.size);
+  }
+}
+
+class PowerUps{
+  constructor() {
+    this.x1 = random(width);
+    this.y1 = random(height);
+    this.x2 = this.x1 + 20;
+    this.y2 = this.y1 - 40;
+    this.x3 = this.x2 + 20;
+    this.y3 = this.y1;
+  }
+  
+  showSelf(){
+    fill(random(360), 100, 100);
+    triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
   }
 }
