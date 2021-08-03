@@ -70,6 +70,7 @@ function draw() {
   
   if(lives <= 0 || gameIsOver){
     gameOver();
+    gameIsOver = false;
   }
 }
 
