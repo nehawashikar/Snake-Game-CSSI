@@ -56,6 +56,10 @@ function setup() {
 function draw() {
   background(backgroundColor);
   
+  fill(200, 10, 80);
+  rect(0, 0, width, 60);
+  rect(0, height-30, width, 30);
+  
   playerSnake.moveSelf();
   playerSnake.showSelf();
   playerSnake.checkCollisions();
@@ -286,12 +290,14 @@ class Apple {
   constructor() {
     this.x = round(random(width - 10));
     this.y = round(random(height - 10));
-    this.size = 10;
+    this.size = 15;
   }
 
   showSelf() {
+    stroke(0);
     fill(0, 80, 80);
     rect(this.x, this.y, this.size, this.size);
+    noStroke();
   }
 }
 
