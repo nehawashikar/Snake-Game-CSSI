@@ -318,7 +318,7 @@ class PowerUpResetLives{
   display(){
     fill(random(360), 80, 100);
     textSize(9);
-    text('Reset \n Lives', this.x1 - 13, this.y1 - 30);
+    text('Reset \n Lives', this.x1 - 12.5, this.y1 - 30);
     triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
     textSize(12);
   }
