@@ -242,26 +242,26 @@ class Snake {
     //collisions with the canvas borders
     if (this.y >= height) {
       lives--;
-      this.y = height - this.size; 
-      this.direction = "N";
-      currentApple = new Apple();
-    }
-    if (this.y <= 0) {
-      lives--;
       this.y = this.size; 
       this.direction = "S";
       currentApple = new Apple();
     }
+    if (this.y <= 0) {
+      lives--;
+      this.y = height - this.size; 
+      this.direction = "N";
+      currentApple = new Apple();
+    }
     if (this.x >= width) {
       lives--;
-      this.x = width - this.size; 
-      this.direction = "W";
+      this.x = this.size; 
+      this.direction = "E";
       currentApple = new Apple();
     }
     if (this.x <= 0) {
       lives--;
-      this.x = this.size; 
-      this.direction = "E";
+      this.x = width - this.size; 
+      this.direction = "W";
       currentApple = new Apple();
     }
     
