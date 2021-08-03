@@ -28,7 +28,7 @@ function setup() {
   currentApple = new Apple();
   
   power = [];
-  for (let i = 0; i < 3; i++){
+  for (let i = 0; i < 4; i++){
     let p = new PowerUps();
     power.push(p);
   }
@@ -239,7 +239,7 @@ class TailSegment {
   }
 
   showSelf() {
-    fill(random(360),50,70);
+    fill(0);
     rect(this.x, this.y, this.size, this.size);
   }
 }
@@ -263,31 +263,13 @@ class PowerUps{
     this.y = random(60,470);
   }
   move(){
-    if(time % 500 == 0 && time > 0){
+    if(time % 30 == 0 && time > 0){
       this.x = random(width);
       this.y = random(60,470);
     }
   }
   display(){
-    fill(random(360), 100, 100);
-    rect(this.x, this.y, 10, 10);
+    fill(random(360), 50, 100);
+    rect(this.x, this.y, 20, 20);
   }
 }
-/*
-class PowerUps{
-  constructor() {
-    this.x1 = random(100, width-200);
-    this.y1 = random(100, height-200);
-    this.x2 = this.x1 + 20;
-    this.y2 = this.y1 - 40;
-    this.x3 = this.x2 + 20;
-    this.y3 = this.y1;
-  }
-  
-  showSelf(){
-    if (timeMultiple) {
-      fill(random(360), 50, 100);
-      triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
-    }
-  }
-}*/
