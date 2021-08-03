@@ -26,6 +26,7 @@ function setup() {
   
   playerSnake = new Snake();
   currentApple = new Apple();
+  power = new PowerUps;
   
   gameIsOver = false;
   score = 0;
@@ -48,6 +49,7 @@ function draw() {
   displayText();
   displayNoise();
   handleTime();
+  displayPowerUps();
   if(lives <= 0 || gameIsOver){
     gameOver();
   }
@@ -93,10 +95,7 @@ function handleTime(){
 }
 
 function displayPowerUps(){
-  if (time % 100 == 0){
-    powerUp = new PowerUps;
-    timeMultiple = true;
-  }
+  
 }
 
 function restartGame() {
@@ -237,8 +236,8 @@ class Apple {
 
 class PowerUps{
   constructor() {
-    this.x1 = random(width);
-    this.y1 = random(height);
+    this.x1 = random(100, width-200);
+    this.y1 = random(100, height-200);
     this.x2 = this.x1 + 20;
     this.y2 = this.y1 - 40;
     this.x3 = this.x2 + 20;
@@ -246,7 +245,9 @@ class PowerUps{
   }
   
   showSelf(){
-    fill(random(360), 100, 100);
-    triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
+    if (timeMultiple) {
+      fill(random(360), 50, 100);
+      triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
+    }
   }
 }
