@@ -272,8 +272,11 @@ class PowerUpScore{
     }
   }
   display(){
-    fill(random(360), 50, 100);
+    fill(random(360), 80, 100);
+    textSize(10);
+    text('  Score \nIncrease', this.x - 8, this.y - 14);
     rect(this.x, this.y, 20, 20);
+    textSize(12);
   }
 }
 
@@ -281,23 +284,26 @@ class PowerUpResetLives{
   constructor(){
     this.x1 = random(width);
     this.y1 = random(height);
-    this.x2 = this.x1 + 20;
-    this.y2 = this.y1 - 40;
-    this.x3 = this.x1 - 20;
-    this.y3 = this.y1 - 40;
+    this.x2 = this.x1 + 10;
+    this.y2 = this.y1 - 20;
+    this.x3 = this.x1 - 10;
+    this.y3 = this.y1 - 20;
   }
   move(){
     if(time % 20 == 0 && time > 0){
       this.x1 = random(width);
       this.y1 = random(height);
-      this.x2 = this.x1 + 20;
-      this.y2 = this.y1 - 40;
-      this.x3 = this.x1 - 20;
-      this.y3 = this.y1 - 40;
+      this.x2 = this.x1 + 10;
+      this.y2 = this.y1 - 20;
+      this.x3 = this.x1 - 10;
+      this.y3 = this.y1 - 20;
     }
   }
   display(){
-    fill(random(360), 20, 50);
+    fill(random(360), 80, 100);
+    textSize(10);
+    text('Reset \n Lives', this.x1 - 15, this.y1 - 35);
     triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
+    textSize(12);
   }
 }
