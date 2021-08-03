@@ -65,7 +65,7 @@ function draw() {
     powers.move();
     powers.display();
     
-    let scoreInc = collideRectRect(powers.x, powers.y, 20, 20, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+    let scoreInc = collideRectRect(powers.x, powers.y, 15, 15, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
     if(scoreInc){
       score += 2;
       powers.x = random(width);
@@ -283,8 +283,8 @@ class PowerUpScore{
   display(){
     fill(random(360), 80, 100);
     textSize(10);
-    text('  Score \nIncrease', this.x - 8, this.y - 14);
-    rect(this.x, this.y, 20, 20);
+    text('  Score \nIncrease', this.x - 11, this.y - 14);
+    rect(this.x, this.y, 15, 15);
     textSize(12);
   }
 }
