@@ -27,6 +27,7 @@ function setup() {
   playerSnake = new Snake();
   currentApple = new Apple();
   
+  gameIsOver = false;
   score = 0;
   lives = 3;
   time = 0;
@@ -56,7 +57,7 @@ function displayText() {
 
 function displayNoise(){
   fill(0);
-  text('*'+label + '*', 5, height - 4);
+  text('*' + label + '*', 5, height - 4);
 }
 
 function gotResult(error, results){
