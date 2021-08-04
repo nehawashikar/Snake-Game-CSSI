@@ -75,6 +75,7 @@ function draw() {
   homeScreen();
   
   if(!home){
+    if (level1 || level2) {
     playerSnake.moveSelf();
     playerSnake.showSelf();
     playerSnake.checkCollisions();
@@ -84,6 +85,9 @@ function draw() {
     displayText();
     displayNoise();
     handleTime();
+    } else if (level3) {
+      //code
+    }
   }
   
   if(lives <= 0 || gameIsOver){
@@ -404,19 +408,29 @@ class PowerUpScore{
     this.y = random(height);
   }
   move(){
-    if(time % 30 == 0 && time > 0){
+    if (level1) {
+      if(time % 40 == 0 && time > 0)
       this.x = random(width);
       this.y = random(height);
-    }
+    
+     else if (level2) 
+      if(time % 20 == 0 && time > 0)
+      this.x = random(width);
+      this.y = random(height);
   }
-  display(){
+  
+  display()
     fill(random(360), 80, 100);
     //textSize(9);
     //text('  Score \nIncrease', this.x - 10, this.y - 14);
-    rect(this.x, this.y, 15, 15);
+    if (level1) 
+      rect(this.x, this.y, 15, 15);
+     else if (level2) 
+        rect(this.x, this.y, 10, 10);
+    
     //textSize(12);
-  }
 }
+  
 
 class PowerUpResetLives{
   constructor(){
