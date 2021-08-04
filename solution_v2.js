@@ -86,7 +86,7 @@ function draw() {
     if (level1 || level2) {
     playerSnake.moveSelf();
     playerSnake.showSelf();
-    playerSnake.speedBoost();
+    //playerSnake.speedBoost();
     playerSnake.checkCollisions();
     playerSnake.checkApples();
     currentApple.showSelf();
@@ -352,9 +352,8 @@ class Snake {
     this.tail.pop();
   }
   
-  speedBoost(){
+  /*speedBoost(){
     if (level2){
-      this.boost = 20;
       if (keyCode === 13){
         this.boost -= 2;
         if (this.boost > 0) {
@@ -364,7 +363,7 @@ class Snake {
         }
       }
     }
-  }
+  }*/
   
   showSelf() {
     stroke(240, 100, 100);
@@ -382,7 +381,9 @@ class Snake {
       score += 1;
       currentApple = new Apple();
       this.extendTail();
-      //frameRateChanger += 1;
+      if(level2){
+        this.speed += 2;
+      }
     }
   }
 
