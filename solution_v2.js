@@ -189,24 +189,37 @@ function mazeCreation(){
   rect6 = rect(330, 180, 3, 80);
   rect7 = rect(250, 260, 83, 3);
   rect8 = rect(250, 260, 3, 80);
-  rect9 = rect(80, 336, 174, 3);
-
+  rect9 = rect(80, 340, 173, 3);
+  rect10 = rect(0, 250, 80, 3);
+  rect11 = rect(340, 350, 3, 150);
+  rect12 = rect(80, 420, 264, 3);
+  rect13 = rect(420, 150, 80, 3);
+  rect14 = rect(330, 80, 89, 3);
+  rect15 = rect(419, 80, 3, 73);
+  rect16 = rect(420, 400, 80, 3);
+  rect17 = rect(419, 80, 3, 73);
 
   
   hitRect1 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 0, 3, 180);
   hitRect2 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 180, 250, 3);
-  hitRect3 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 100, 75, 3);;
-  hitRect4 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 100, 3, 80);;
-  hitRect5 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 165, 180, 3, 80);;
-  hitRect6 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 330, 180, 3, 80);;
-  hitRect7 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 260, 83, 3);;
-  hitRect8 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 260, 3, 80);;
-  hitRect9 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 0, 3, 180);;
+  hitRect3 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 100, 75, 3);
+  hitRect4 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 100, 3, 80);
+  hitRect5 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 165, 180, 3, 80);
+  hitRect6 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 330, 180, 3, 80);
+  hitRect7 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 260, 83, 3);
+  hitRect8 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 260, 3, 80);
+  hitRect9 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 340, 173, 3);
+  hitRect10 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 0, 250, 80, 3);
+  hitRect11 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 340, 350, 3, 150);
+  hitRect12 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 420, 264, 3);
+  hitRect13 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 150, 80, 3);
+  hitRect14 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 330, 80, 89, 3);
+  hitRect15 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 419, 80, 3, 73);
   
   
   
-  
-  if(hitRect1 || hitRect2 || hitRect3 || hitRect4 || hitRect5 || hitRect6 || hitRect7 || hitRect8 || hitRect9){
+  if(hitRect1 || hitRect2 || hitRect3 || hitRect4 || hitRect5 || hitRect6 || hitRect7 || hitRect8 || hitRect9 || hitRect10 
+     || hitRect11 || hitRect12 || hitRect13 || hitRect14 || hitRect15){
     restartGame();
   }
 }
