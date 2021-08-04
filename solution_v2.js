@@ -24,6 +24,10 @@ function setup() {
   
   classifier.classify(gotResult);
   
+  button = createButton('Level 1');
+  button.position(250, 200);
+  //button.mousePressed();
+  
   playerSnake = new Snake();
   currentApple = new Apple();
   
@@ -78,16 +82,27 @@ function draw() {
   }
 }
 
+function levelOne(){
+  
+}
+
 function homeScreen(){
   fill(120,100,20);
   rect(0,0,width,height);
   textSize(60);
   fill(0,100,100);
   stroke(0);
-  strokeWeight
+  strokeWeight(12);
   text('SNAKE GAME',50,70);
   noStroke();
+  strokeWeight(2);
   textSize(12);
+  
+  fill(100);
+  text('                    Bright colorful squares are powerups used to increase score by 2',10,height-60);
+  text('                    Bright colorful triangles are powerups used to reset lives back to 5',10,height-40);
+  text('Dim colorful rectangles that are differently shaped are obstacles that reset score back to 0',10,height-20);
+  
   
   
 }
