@@ -50,13 +50,15 @@ function setup() {
   lives = 5;
   time = 0;
   level1 = false;
-  level = false;
-  level1 = false;
+  level2 = false;
+  level3 = false;
   
 }
 
 function draw() {
   background(backgroundColor); //random(50,100)
+  
+  homeScreen();
   
   playerSnake.moveSelf();
   playerSnake.showSelf();
@@ -79,6 +81,13 @@ function draw() {
 function homeScreen(){
   fill(120,100,20);
   rect(0,0,width,height);
+  textSize(60);
+  fill(0,100,100);
+  stroke(0);
+  strokeWeight
+  text('SNAKE GAME',50,70);
+  noStroke();
+  textSize(12);
   
   
 }
