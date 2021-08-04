@@ -351,15 +351,15 @@ class Snake {
     this.tail.unshift(new TailSegment(this.x, this.y));
     this.tail.pop();
   }
-
+  
   speedBoost(){
     if (level2){
-      this.boost = 10;
+      this.boost = 20;
       if (keyCode === 13){
-        this.boost -= 1;
+        this.boost -= 2;
         if (this.boost > 0) {
-          this.speed = 2;
-        } else if (this.boost = 0){
+          this.speed = 30;
+        } else {
           this.speed = 12;
         }
       }
