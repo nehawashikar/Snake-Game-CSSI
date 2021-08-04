@@ -24,9 +24,17 @@ function setup() {
   
   classifier.classify(gotResult);
   
-  button = createButton('Level 1');
-  button.position(250, 200);
-  //button.mousePressed();
+  button1 = createButton('Level 1');
+  button1.position(250, 200);
+  button1.mousePressed(levelOne);
+  
+  button2 = createButton('Level 2');
+  button2.position(250, 230);
+  button2.mousePressed(levelTwo);
+  
+  button3 = createButton('Level 3');
+  button3.position(250, 260);
+  button3.mousePressed(levelThree);
   
   playerSnake = new Snake();
   currentApple = new Apple();
@@ -53,6 +61,8 @@ function setup() {
   score = 0;
   lives = 5;
   time = 0;
+  
+  home = true;
   level1 = false;
   level2 = false;
   level3 = false;
@@ -64,17 +74,20 @@ function draw() {
   
   homeScreen();
   
-  playerSnake.moveSelf();
-  playerSnake.showSelf();
-  playerSnake.checkCollisions();
-  playerSnake.checkApples();
+  if(!home){
+    playerSnake.moveSelf();
+    playerSnake.showSelf();
+    playerSnake.checkCollisions();
+    playerSnake.checkApples();
 
-  currentApple.showSelf();
+    currentApple.showSelf();
 
-  powerAndObs();
-  displayText();
-  displayNoise();
-  handleTime();
+    powerAndObs();
+    displayText();
+    displayNoise();
+    handleTime();
+  }
+  
   
   if(lives <= 0 || gameIsOver){
     gameOver();
@@ -83,26 +96,47 @@ function draw() {
 }
 
 function levelOne(){
-  
+  level1 = true;
+  home = false;
+  button1.position(0-100, 0);
+  button2.position(0-100, 0);
+  button3.position(0-100, 0);
+}
+
+function levelTwo(){
+  level2 = true;
+  home = false;
+  button1.position(0-100, 0);
+  button2.position(0-100, 0);
+  button3.position(0-100, 0);
+}
+
+function levelThree(){
+  level3 = true;
+  home = false;
+  button1.position(0-100, 0);
+  button2.position(0-100, 0);
+  button3.position(0-100, 0);
 }
 
 function homeScreen(){
-  fill(120,100,20);
-  rect(0,0,width,height);
-  textSize(60);
-  fill(0,100,100);
-  stroke(0);
-  strokeWeight(12);
-  text('SNAKE GAME',50,70);
-  noStroke();
-  strokeWeight(2);
-  textSize(12);
-  
-  fill(100);
-  text('                    Bright colorful squares are powerups used to increase score by 2',10,height-60);
-  text('                    Bright colorful triangles are powerups used to reset lives back to 5',10,height-40);
-  text('Dim colorful rectangles that are differently shaped are obstacles that reset score back to 0',10,height-20);
-  
+  if(home){
+    fill(120,100,20);
+    rect(0,0,width,height);
+    textSize(60);
+    fill(0,100,100);
+    stroke(0);
+    strokeWeight(12);
+    text('SNAKE GAME',50,70);
+    noStroke();
+    strokeWeight(2);
+    textSize(12);
+
+    fill(100);
+    text('                    Bright colorful squares are powerups used to increase score by 2',10,height-60);
+    text('                    Bright colorful triangles are powerups used to reset lives back to 5',10,height-40);
+    text('Dim colorful rectangles that are differently shaped are obstacles that reset score back to 0',10,height-20);
+  }
   
   
 }
