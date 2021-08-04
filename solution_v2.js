@@ -181,7 +181,10 @@ function homeScreen(){
 function mazeCreation(){
   
   fill(0);
-  rect(0, height-40, width-100, 1);
+  rect1 = rect(250, 0, 3, 180);
+  rect2 = rect(80, 250, 250, 3);
+  rect(0, 400, 400, 3);
+  rect(0, 400, 400, 3);
 }
 
 function displayText() {
