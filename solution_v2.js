@@ -84,6 +84,7 @@ function draw() {
   
   if(!home){
     if (level1 || level2) {
+      background(backgroundColor);
       playerSnake.moveSelf();
       playerSnake.showSelf();
       //playerSnake.speedBoost();
@@ -95,6 +96,7 @@ function draw() {
       displayNoise();
       handleTime();
     } else if (level3) {
+       // background(random(20,100));
         mazeCreation();
         playerSnake.moveSelf();
         playerSnake.showSelf();
@@ -197,7 +199,7 @@ function mazeCreation(){
   rect14 = rect(330, 80, 89, 3);
   rect15 = rect(419, 80, 3, 73);
   rect16 = rect(420, 400, 80, 3);
-  rect17 = rect(419, 80, 3, 73);
+  rect17 = rect(420, 260, 3, 144);
 
   
   hitRect1 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 0, 3, 180);
@@ -215,11 +217,13 @@ function mazeCreation(){
   hitRect13 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 150, 80, 3);
   hitRect14 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 330, 80, 89, 3);
   hitRect15 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 419, 80, 3, 73);
+  hitRect16 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 400, 80, 3);
+  hitRect17 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 260, 3, 144);
   
   
-  
-  if(hitRect1 || hitRect2 || hitRect3 || hitRect4 || hitRect5 || hitRect6 || hitRect7 || hitRect8 || hitRect9 || hitRect10 
-     || hitRect11 || hitRect12 || hitRect13 || hitRect14 || hitRect15){
+  if(hitRect1 || hitRect2 || hitRect3 || hitRect4 || hitRect5 || hitRect6 || hitRect7 || hitRect8 || hitRect9 
+     || hitRect10 || hitRect11 || hitRect12 || hitRect13 || hitRect14 || hitRect15 || hitRect16 || hitRect17){
+    lives--;
     restartGame();
   }
 }
