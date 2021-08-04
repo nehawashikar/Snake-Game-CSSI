@@ -51,11 +51,19 @@ function setup() {
     power2.push(p2);
   }
   
+  
   obs = [];
-  for (let i = 0; i < 3; i++){
-    let o = new Obstacle();
-    obs.push(o);
-  }
+  //if (level1){
+    for (let i = 0; i < 3; i++){
+      let o = new Obstacle();
+      obs.push(o);
+    }
+  /*} else if (level2){
+    for (let i = 0; i < 6; i++){
+      let o = new Obstacle();
+      obs.push(o);
+    }
+  }*/
   
   gameIsOver = false;
   score = 0;
@@ -212,7 +220,7 @@ function powerAndObs(){
       powers.y = random(height);
     }
     } else if (level2){
-      let scoreInc = collideRectRect(powers.x, powers.y, 15, 15, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+      let scoreInc = collideRectRect(powers.x, powers.y, 7, 7, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
       if(scoreInc){
       score += 2;
       powers.x = random(width);
@@ -229,7 +237,10 @@ function powerAndObs(){
     let livesReset2 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
     let livesReset3 = collidePointTriangle(playerSnake.x, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
     let livesReset4 = collidePointTriangle(playerSnake.x + playerSnake.size, playerSnake.y + playerSnake.size, powers2.x1, powers2.y1, powers2.x2, powers2.y2, powers2.x3, powers2.y3);
-    if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
+    
+    
+    if (level1) {
+      if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
       lives = 5;
       powers2.x1 = random(width);
       powers2.y1 = random(height);
@@ -238,6 +249,17 @@ function powerAndObs(){
       powers2.x3 = powers2.x1 - 8;
       powers2.y3 = powers2.y1 + 16;
     }
+    } else if (level2) {
+      if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
+      lives = 5;
+      powers2.x1 = random(width);
+      powers2.y1 = random(height);
+      powers2.x2 = powers2.x1 + 5;
+      powers2.y2 = powers2.y1 + 10;
+      powers2.x3 = powers2.x1 - 5;
+      powers2.y3 = powers2.y1 + 10;
+    }
+    }
   }
   
   for (let theObs of obs){
@@ -245,12 +267,22 @@ function powerAndObs(){
     theObs.display();
     
     let scoreInc = collideRectRect(theObs.x, theObs.y, theObs.rectWidth, theObs.rectHeight, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
-    if(scoreInc){
+    if (level1) {
+      if(scoreInc){
       score = 0;
       theObs.x = random(width);
       theObs.y = random(height);
       theObs.rectWidth = random(10,16);
       theObs.rectHeight = random(5,10);
+    }
+    } else if (level2) {
+      if(scoreInc){
+      score = 0;
+      theObs.x = random(width);
+      theObs.y = random(height);
+      theObs.rectWidth = random(25,40);
+      theObs.rectHeight = random(20,30);
+    }
     }
   }
 }
@@ -318,6 +350,12 @@ class Snake {
     this.tail.pop();
   }
 
+  speedBoost(){
+    if (level2){
+      if 
+    }
+  }
+  
   showSelf() {
     stroke(240, 100, 100);
     noFill();
