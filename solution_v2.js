@@ -358,9 +358,9 @@ class Snake {
       if (keyCode === 13){
         this.boost -= 1;
         if (this.boost > 0) {
-          this.speed = 50;
-        } else if (this.boost <= 0){
-          this.speed = 20;
+          this.speed = 2;
+        } else if (this.boost = 0){
+          this.speed = 12;
         }
       }
     }
@@ -502,22 +502,22 @@ class PowerUpResetLives{
   move(){
     if (level1) {
       if(time % 40 == 0 && time > 0){
-      this.x1 = random(width);
-      this.y1 = random(height);
-      this.x2 = this.x1 + 8;
-      this.y2 = this.y1 + 16;
-      this.x3 = this.x1 - 8;
-      this.y3 = this.y1 + 16;
-    }
+        this.x1 = random(width);
+        this.y1 = random(height);
+        this.x2 = this.x1 + 8;
+        this.y2 = this.y1 + 16;
+        this.x3 = this.x1 - 8;
+        this.y3 = this.y1 + 16;
+      }
     } else if (level2) {
       if(time % 20 == 0 && time > 0){
-      this.x1 = random(width);
-      this.y1 = random(height);
-      this.x2 = this.x1 + 5;
-      this.y2 = this.y1 + 10;
-      this.x3 = this.x1 - 5;
-      this.y3 = this.y1 + 10;
-    }
+        this.x1 = random(width);
+        this.y1 = random(height);
+        this.x2 = this.x1 + 5;
+        this.y2 = this.y1 + 10;
+        this.x3 = this.x1 - 5;
+        this.y3 = this.y1 + 10;
+      }
     }
   }
   display(){
