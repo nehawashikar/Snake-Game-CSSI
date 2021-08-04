@@ -182,9 +182,33 @@ function mazeCreation(){
   
   fill(0);
   rect1 = rect(250, 0, 3, 180);
-  rect2 = rect(80, 250, 250, 3);
-  rect(0, 400, 400, 3);
-  rect(0, 400, 400, 3);
+  rect2 = rect(80, 180, 250, 3);
+  rect3 = rect(80, 100, 75, 3);
+  rect4 = rect(80, 100, 3, 80);
+  rect5 = rect(165, 180, 3, 80);
+  rect6 = rect(330, 180, 3, 80);
+  rect7 = rect(250, 260, 83, 3);
+  rect8 = rect(250, 260, 3, 80);
+  rect9 = rect(80, 336, 174, 3);
+
+
+  
+  hitRect1 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 0, 3, 180);
+  hitRect2 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 180, 250, 3);
+  hitRect3 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 100, 75, 3);;
+  hitRect4 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 100, 3, 80);;
+  hitRect5 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 165, 180, 3, 80);;
+  hitRect6 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 330, 180, 3, 80);;
+  hitRect7 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 260, 83, 3);;
+  hitRect8 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 260, 3, 80);;
+  hitRect9 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 0, 3, 180);;
+  
+  
+  
+  
+  if(hitRect1 || hitRect2 || hitRect3 || hitRect4 || hitRect5 || hitRect6 || hitRect7 || hitRect8 || hitRect9){
+    restartGame();
+  }
 }
 
 function displayText() {
