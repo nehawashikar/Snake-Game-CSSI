@@ -49,7 +49,9 @@ function setup() {
   score = 0;
   lives = 5;
   time = 0;
-  timeMultiple = false;
+  level1 = false;
+  level = false;
+  level1 = false;
   
 }
 
@@ -72,6 +74,13 @@ function draw() {
     gameOver();
     gameIsOver = false;
   }
+}
+
+function homeScreen(){
+  fill(120,100,20);
+  rect(0,0,width,height);
+  
+  
 }
 
 function displayText() {
