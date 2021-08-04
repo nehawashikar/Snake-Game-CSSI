@@ -86,6 +86,7 @@ function draw() {
     if (level1 || level2) {
     playerSnake.moveSelf();
     playerSnake.showSelf();
+    playerSnake.speedBoost();
     playerSnake.checkCollisions();
     playerSnake.checkApples();
     currentApple.showSelf();
@@ -241,24 +242,24 @@ function powerAndObs(){
     
     if (level1) {
       if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
-      lives = 5;
-      powers2.x1 = random(width);
-      powers2.y1 = random(height);
-      powers2.x2 = powers2.x1 + 8;
-      powers2.y2 = powers2.y1 + 16;
-      powers2.x3 = powers2.x1 - 8;
-      powers2.y3 = powers2.y1 + 16;
-    }
+        lives = 5;
+        powers2.x1 = random(width);
+        powers2.y1 = random(height);
+        powers2.x2 = powers2.x1 + 8;
+        powers2.y2 = powers2.y1 + 16;
+        powers2.x3 = powers2.x1 - 8;
+        powers2.y3 = powers2.y1 + 16;
+      }
     } else if (level2) {
       if(livesReset1 || livesReset2 || livesReset3 || livesReset4){
-      lives = 5;
-      powers2.x1 = random(width);
-      powers2.y1 = random(height);
-      powers2.x2 = powers2.x1 + 5;
-      powers2.y2 = powers2.y1 + 10;
-      powers2.x3 = powers2.x1 - 5;
-      powers2.y3 = powers2.y1 + 10;
-    }
+        lives = 5;
+        powers2.x1 = random(width);
+        powers2.y1 = random(height);
+        powers2.x2 = powers2.x1 + 5;
+        powers2.y2 = powers2.y1 + 10;
+        powers2.x3 = powers2.x1 - 5;
+        powers2.y3 = powers2.y1 + 10;
+      }
     }
   }
   
@@ -353,13 +354,13 @@ class Snake {
 
   speedBoost(){
     if (level2){
+      this.boost = 10;
       if (keyCode === 13){
-        this.boost = 10;
         this.boost -= 1;
         if (this.boost > 0) {
-          this.speed = 100;
+          this.speed = 50;
         } else if (this.boost <= 0){
-          this.speed = 12;
+          this.speed = 20;
         }
       }
     }
@@ -480,15 +481,12 @@ class PowerUpScore{
   
   display(){
     fill(random(360), 80, 100);
-    //textSize(9);
-    //text('  Score \nIncrease', this.x - 10, this.y - 14);
     if (level1) {
       rect(this.x, this.y, 15, 15);
     } else if (level2) {
         rect(this.x, this.y, 7, 7);
     }
   }
-    //textSize(12);
 }
   
 
@@ -524,10 +522,7 @@ class PowerUpResetLives{
   }
   display(){
     fill(random(360), 80, 100);
-    //textSize(9);
-    //text('Reset \n Lives', this.x1 - 12.5, this.y1 + 25);
     triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
-    //textSize(12);
   }
 }
 
@@ -545,21 +540,18 @@ class Obstacle{
         this.y = random(height);
         this.rectWidth = random(10,16);
         this.rectHeight = random(5,10);
-    } 
+      } 
     } else if (level2) {
       if (time % 7 == 0 && time > 0){
         this.x = random(width);
         this.y = random(height);
         this.rectWidth = random(25,40);
         this.rectHeight = random(20,30);
-    }
+      }
     }
   }
   display(){
     fill(random(360), 100, 40);
-    //textSize(9);
-    //text('Score Decrease', this.x, this.y);
     rect(this.x, this.y, this.rectWidth, this.rectHeight);
-    //textSize(12);
   }
 }
