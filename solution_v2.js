@@ -84,18 +84,27 @@ function draw() {
   
   if(!home){
     if (level1 || level2) {
-    playerSnake.moveSelf();
-    playerSnake.showSelf();
-    //playerSnake.speedBoost();
-    playerSnake.checkCollisions();
-    playerSnake.checkApples();
-    currentApple.showSelf();
-    powerAndObs();
-    displayText();
-    displayNoise();
-    handleTime();
+      playerSnake.moveSelf();
+      playerSnake.showSelf();
+      //playerSnake.speedBoost();
+      playerSnake.checkCollisions();
+      playerSnake.checkApples();
+      currentApple.showSelf();
+      powerAndObs();
+      displayText();
+      displayNoise();
+      handleTime();
     } else if (level3) {
-      //code
+        mazeCreation();
+        playerSnake.moveSelf();
+        playerSnake.showSelf();
+        playerSnake.checkCollisions();
+        playerSnake.checkApples();
+        currentApple.showSelf();
+    
+        displayText();
+        displayNoise();
+        handleTime();
     }
   }
   
@@ -104,6 +113,7 @@ function draw() {
     gameIsOver = false;
   }
 }
+
 
 function levelOne(){
   level1 = true;
@@ -166,14 +176,18 @@ function homeScreen(){
     text('Dim colorful rectangles that are differently shaped are obstacles that reset score back to 0',10,height-40);
     text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-20);
   }
+}
+
+function mazeCreation(){
   
-  
+  fill(0);
+  rect(0, height-40, width-100, 1);
 }
 
 function displayText() {
   fill(0);
-  text(`Your score is: ${score}`, 5, 15)
-  text(`You have ${lives} lives left`, 5, 30)
+  text(`Your score is: ${score}`, 5, 15);
+  text(`You have ${lives} lives left`, 5, 30);
 }
 
 function displayNoise(){
@@ -332,7 +346,7 @@ class Snake {
     this.y = height - this.size;
     this.direction = 'N';
     this.speed = 12;
-    this.boost = 0;
+    //this.boost = 0;
     this.tail = [new TailSegment(this.x, this.y)];
   }
 
@@ -382,7 +396,7 @@ class Snake {
       currentApple = new Apple();
       this.extendTail();
       if(level2){
-        this.speed += 2;
+        this.speed += 3;
       }
     }
   }
