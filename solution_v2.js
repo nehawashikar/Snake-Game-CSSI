@@ -121,7 +121,7 @@ function homeScreen(){
     fill(120,100,20);
     rect(0,0,width,height);
     textSize(60);
-    fill(0,100,100);
+    fill(random(360),100,100);
     stroke(0);
     strokeWeight(12);
     text('SNAKE GAME',50,70);
@@ -139,8 +139,11 @@ function homeScreen(){
     rect(340,100,40);
     rect(385,100,40);
 
+    fill(0,100,100);
+    textSize(20);
+    text('CHOOSE A LEVEL',160,200);
+    textSize(12);
     fill(100);
-    text('CHOOSE A LEVEL...',100,100);
     text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-160);
     text('                                   Press the SPACE bar to restart current level',10,height-140);
     text('             Press the BACKSPACE bar to restart whole game and return to this page',10,height-120);
@@ -253,9 +256,9 @@ function keyPressed() {
     restartGame();
   }else if (keyCode === BACKSPACE) {
     home = true;
-    button1.position(230, 200);
-    button2.position(220, 230);
-    button3.position(230, 260);
+    button1.position(230, 260);
+    button2.position(220, 290);
+    button3.position(230, 320);
   }
 }
 
