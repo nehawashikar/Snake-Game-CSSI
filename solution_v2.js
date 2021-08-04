@@ -7,7 +7,7 @@
 
 // Solution: Version 2 - With Tail
 
-let backgroundColor, playerSnake, currentApple, score, lives;
+let backgroundColor, playerSnake, currentApple, score, lives, level1, level2, level3;
 let label = 'listening...';
 let classifier;
 let imageModelURL = 'https://teachablemachine.withgoogle.com/models/aaRjZ9wBL/';
@@ -331,6 +331,7 @@ class Snake {
     this.y = height - this.size;
     this.direction = 'N';
     this.speed = 12;
+    this.boost = 0;
     this.tail = [new TailSegment(this.x, this.y)];
   }
 
@@ -352,7 +353,15 @@ class Snake {
 
   speedBoost(){
     if (level2){
-      if 
+      if (keyCode === 13){
+        this.boost = 10;
+        this.boost -= 1;
+        if (this.boost > 0) {
+          this.speed = 100;
+        } else if (this.boost <= 0){
+          this.speed = 12;
+        }
+      }
     }
   }
   
