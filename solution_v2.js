@@ -24,16 +24,16 @@ function setup() {
   
   classifier.classify(gotResult);
   
-  button1 = createButton('Level 1');
-  button1.position(250, 200);
+  button1 = createButton('Level 1 - EASY');
+  button1.position(230, 260);
   button1.mousePressed(levelOne);
   
-  button2 = createButton('Level 2');
-  button2.position(250, 230);
+  button2 = createButton('Level 2 - MEDIUM');
+  button2.position(220, 290);
   button2.mousePressed(levelTwo);
   
-  button3 = createButton('Level 3');
-  button3.position(250, 260);
+  button3 = createButton('Level 3 - HARD');
+  button3.position(230, 320);
   button3.mousePressed(levelThree);
   
   playerSnake = new Snake();
@@ -79,15 +79,12 @@ function draw() {
     playerSnake.showSelf();
     playerSnake.checkCollisions();
     playerSnake.checkApples();
-
     currentApple.showSelf();
-
     powerAndObs();
     displayText();
     displayNoise();
     handleTime();
   }
-  
   
   if(lives <= 0 || gameIsOver){
     gameOver();
@@ -98,25 +95,25 @@ function draw() {
 function levelOne(){
   level1 = true;
   home = false;
-  button1.position(0-100, 0);
-  button2.position(0-100, 0);
-  button3.position(0-100, 0);
+  button1.position(0-200, 0);
+  button2.position(0-200, 0);
+  button3.position(0-200, 0);
 }
 
 function levelTwo(){
   level2 = true;
   home = false;
-  button1.position(0-100, 0);
-  button2.position(0-100, 0);
-  button3.position(0-100, 0);
+  button1.position(0-200, 0);
+  button2.position(0-200, 0);
+  button3.position(0-200, 0);
 }
 
 function levelThree(){
   level3 = true;
   home = false;
-  button1.position(0-100, 0);
-  button2.position(0-100, 0);
-  button3.position(0-100, 0);
+  button1.position(0-200, 0);
+  button2.position(0-200, 0);
+  button3.position(0-200, 0);
 }
 
 function homeScreen(){
@@ -131,11 +128,27 @@ function homeScreen(){
     noStroke();
     strokeWeight(2);
     textSize(12);
+    
+    fill(0);
+    rect(70,100,40);
+    rect(115,100,40);
+    rect(160,100,40);
+    rect(205,100,40);
+    rect(250,100,40);
+    rect(295,100,40);
+    rect(340,100,40);
+    rect(385,100,40);
 
     fill(100);
-    text('                    Bright colorful squares are powerups used to increase score by 2',10,height-60);
-    text('                    Bright colorful triangles are powerups used to reset lives back to 5',10,height-40);
-    text('Dim colorful rectangles that are differently shaped are obstacles that reset score back to 0',10,height-20);
+    text('CHOOSE A LEVEL...',100,100);
+    text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-160);
+    text('                                   Press the SPACE bar to restart current level',10,height-140);
+    text('             Press the BACKSPACE bar to restart whole game and return to this page',10,height-120);
+    text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-100);
+    text('                    Bright colorful squares are powerups used to increase score by 2',10,height-80);
+    text('                    Bright colorful triangles are powerups used to reset lives back to 5',10,height-60);
+    text('Dim colorful rectangles that are differently shaped are obstacles that reset score back to 0',10,height-40);
+    text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-20);
   }
   
   
@@ -238,6 +251,11 @@ function keyPressed() {
     playerSnake.direction = "W";
   }else if (keyCode === 32) {
     restartGame();
+  }else if (keyCode === BACKSPACE) {
+    home = true;
+    button1.position(230, 200);
+    button2.position(220, 230);
+    button3.position(230, 260);
   }
 }
 
