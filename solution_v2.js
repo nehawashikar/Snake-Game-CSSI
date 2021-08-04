@@ -204,11 +204,20 @@ function powerAndObs(){
     powers.move();
     powers.display();
     
+    if (level1){
     let scoreInc = collideRectRect(powers.x, powers.y, 15, 15, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
     if(scoreInc){
       score += 2;
       powers.x = random(width);
       powers.y = random(height);
+    }
+    } else if (level2){
+      let scoreInc = collideRectRect(powers.x, powers.y, 15, 15, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
+      if(scoreInc){
+      score += 2;
+      powers.x = random(width);
+      powers.y = random(height);
+    }
     }
   }
   
@@ -409,25 +418,29 @@ class PowerUpScore{
   }
   move(){
     if (level1) {
-      if(time % 40 == 0 && time > 0)
+      if(time % 40 == 0 && time > 0){
       this.x = random(width);
       this.y = random(height);
-    
-     else if (level2) 
-      if(time % 20 == 0 && time > 0)
+      }
+    }
+     else if (level2) {
+      if(time % 20 == 0 && time > 0){
       this.x = random(width);
       this.y = random(height);
+      }
+     }
   }
   
-  display()
+  display(){
     fill(random(360), 80, 100);
     //textSize(9);
     //text('  Score \nIncrease', this.x - 10, this.y - 14);
-    if (level1) 
+    if (level1) {
       rect(this.x, this.y, 15, 15);
-     else if (level2) 
-        rect(this.x, this.y, 10, 10);
-    
+    } else if (level2) {
+        rect(this.x, this.y, 7, 7);
+    }
+  }
     //textSize(12);
 }
   
@@ -442,13 +455,24 @@ class PowerUpResetLives{
     this.y3 = this.y1 + 16;
   }
   move(){
-    if(time % 40 == 0 && time > 0){
+    if (level1) {
+      if(time % 40 == 0 && time > 0){
       this.x1 = random(width);
       this.y1 = random(height);
       this.x2 = this.x1 + 8;
       this.y2 = this.y1 + 16;
       this.x3 = this.x1 - 8;
       this.y3 = this.y1 + 16;
+    }
+    } else if (level2) {
+      if(time % 20 == 0 && time > 0){
+      this.x1 = random(width);
+      this.y1 = random(height);
+      this.x2 = this.x1 + 5;
+      this.y2 = this.y1 + 10;
+      this.x3 = this.x1 - 5;
+      this.y3 = this.y1 + 10;
+    }
     }
   }
   display(){
@@ -464,15 +488,24 @@ class Obstacle{
   constructor(){
     this.x = random(width);
     this.y = random(height);
-    this.rectWidth = random(10,16);
-    this.rectHeight = random(5,10);
+    this.rectWidth = random(10,25);
+    this.rectHeight = random(5,20);
   }
   move(){
-    if(time % 10 == 0 && time > 0){
-      this.x = random(width);
-      this.y = random(height);
-      this.rectWidth = random(10,16);
-      this.rectHeight = random(5,10);
+    if (level1) {
+      if (time % 10 == 0 && time > 0){
+        this.x = random(width);
+        this.y = random(height);
+        this.rectWidth = random(10,16);
+        this.rectHeight = random(5,10);
+    } 
+    } else if (level2) {
+      if (time % 7 == 0 && time > 0){
+        this.x = random(width);
+        this.y = random(height);
+        this.rectWidth = random(25,40);
+        this.rectHeight = random(20,30);
+    }
     }
   }
   display(){
