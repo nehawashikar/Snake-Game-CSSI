@@ -82,13 +82,11 @@ function draw() {
   
   if(home){
     homeScreen();
-    restartGame();
   }else if(!home){
     if (level1 || level2) {
       background(backgroundColor);
       playerSnake.moveSelf();
       playerSnake.showSelf();
-      //playerSnake.speedBoost();
       playerSnake.checkCollisions();
       playerSnake.checkApples();
       currentApple.showSelf();
@@ -98,7 +96,7 @@ function draw() {
       handleTime();
       
     } else if (level3) {
-       // background(random(20,100));
+        background(random(20,100));
         mazeCreation();
         playerSnake.moveSelf();
         playerSnake.showSelf();
@@ -202,7 +200,11 @@ function mazeCreation(){
   rect15 = rect(419, 80, 3, 73);
   rect16 = rect(420, 400, 80, 3);
   rect17 = rect(420, 260, 3, 144);
-
+  
+  let one = true;
+  if(time % 10 == 0){
+    rect18 = rect(random(width), random(height), 3, 80);
+  }
   
   hitRect1 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 0, 3, 180);
   hitRect2 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 180, 250, 3);
@@ -221,10 +223,11 @@ function mazeCreation(){
   hitRect15 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 419, 80, 3, 73);
   hitRect16 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 400, 80, 3);
   hitRect17 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 260, 3, 144);
-  
+  hitRect18 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, random(width), random(height), 3, 60);
+ 
   
   if(hitRect1 || hitRect2 || hitRect3 || hitRect4 || hitRect5 || hitRect6 || hitRect7 || hitRect8 || hitRect9 
-     || hitRect10 || hitRect11 || hitRect12 || hitRect13 || hitRect14 || hitRect15 || hitRect16 || hitRect17){
+     || hitRect10 || hitRect11 || hitRect12 || hitRect13 || hitRect14 || hitRect15 || hitRect16 || hitRect17 || hitRect18){
     lives--;
     restartGame();
   }
@@ -396,7 +399,6 @@ class Snake {
     this.y = height - this.size;
     this.direction = 'N';
     this.speed = 12;
-    //this.boost = 0;
     this.tail = [new TailSegment(this.x, this.y)];
   }
 
@@ -415,19 +417,6 @@ class Snake {
     this.tail.unshift(new TailSegment(this.x, this.y));
     this.tail.pop();
   }
-  
-  /*speedBoost(){
-    if (level2){
-      if (keyCode === 13){
-        this.boost -= 2;
-        if (this.boost > 0) {
-          this.speed = 30;
-        } else {
-          this.speed = 12;
-        }
-      }
-    }
-  }*/
   
   showSelf() {
     stroke(240, 100, 100);
