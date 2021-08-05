@@ -53,17 +53,10 @@ function setup() {
   
   
   obs = [];
-  //if (level1){
     for (let i = 0; i < 3; i++){
       let o = new Obstacle();
       obs.push(o);
     }
-  /*} else if (level2){
-    for (let i = 0; i < 6; i++){
-      let o = new Obstacle();
-      obs.push(o);
-    }
-  }*/
   
   gameIsOver = false;
   score = 0;
@@ -84,7 +77,6 @@ function draw() {
     homeScreen();
   }else if(!home){
     if (level1 || level2) {
-      background(backgroundColor);
       playerSnake.moveSelf();
       playerSnake.showSelf();
       playerSnake.checkCollisions();
@@ -96,7 +88,6 @@ function draw() {
       handleTime();
       
     } else if (level3) {
-        background(random(20,100));
         mazeCreation();
         playerSnake.moveSelf();
         playerSnake.showSelf();
@@ -201,11 +192,6 @@ function mazeCreation(){
   rect16 = rect(420, 400, 80, 3);
   rect17 = rect(420, 260, 3, 144);
   
-  let one = true;
-  if(time % 10 == 0){
-    rect18 = rect(random(width), random(height), 3, 80);
-  }
-  
   hitRect1 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 250, 0, 3, 180);
   hitRect2 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 180, 250, 3);
   hitRect3 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 80, 100, 75, 3);
@@ -222,12 +208,10 @@ function mazeCreation(){
   hitRect14 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 330, 80, 89, 3);
   hitRect15 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 419, 80, 3, 73);
   hitRect16 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 400, 80, 3);
-  hitRect17 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 260, 3, 144);
-  hitRect18 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, random(width), random(height), 3, 60);
- 
+  hitRect17 = collideRectRect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size, 420, 260, 3, 144); 
   
   if(hitRect1 || hitRect2 || hitRect3 || hitRect4 || hitRect5 || hitRect6 || hitRect7 || hitRect8 || hitRect9 
-     || hitRect10 || hitRect11 || hitRect12 || hitRect13 || hitRect14 || hitRect15 || hitRect16 || hitRect17 || hitRect18){
+     || hitRect10 || hitRect11 || hitRect12 || hitRect13 || hitRect14 || hitRect15 || hitRect16 || hitRect17){
     lives--;
     restartGame();
   }
