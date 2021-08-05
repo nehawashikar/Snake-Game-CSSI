@@ -381,6 +381,7 @@ function gameOver() {
   stroke(0);
   fill(0);
   text("GAME OVER", 50, 50);
+  gameIsOver = true;
   noLoop();
 }
 
