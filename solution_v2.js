@@ -80,8 +80,10 @@ function setup() {
 function draw() {
   background(backgroundColor); //random(50,100)
   
-  homeScreen();
-  
+  if(home){
+    homeScreen();
+  }
+    
   if(!home){
     if (level1 || level2) {
       background(backgroundColor);
@@ -142,7 +144,7 @@ function levelThree(){
 }
 
 function homeScreen(){
-  if(home){
+  
     fill(120,100,20);
     rect(0,0,width,height);
     textSize(60);
@@ -177,7 +179,7 @@ function homeScreen(){
     text('                    Bright colorful triangles are powerups used to reset lives back to 5',10,height-60);
     text('Dim colorful rectangles that are differently shaped are obstacles that reset score back to 0',10,height-40);
     text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-20);
-  }
+  
 }
 
 function mazeCreation(){
@@ -360,6 +362,7 @@ function keyPressed() {
     restartGame();
   }else if (keyCode === BACKSPACE) {
     home = true;
+    homeScreen();
     button1.position(230, 260);
     button2.position(220, 290);
     button3.position(230, 320);
