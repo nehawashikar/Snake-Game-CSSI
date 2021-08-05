@@ -80,8 +80,9 @@ function setup() {
 function draw() {
   background(backgroundColor); //random(50,100)
   
-  if(home || (home && (level1 || level2 || level3))){
+  if(home){
     homeScreen();
+    restartGame();
   }else if(!home){
     if (level1 || level2) {
       background(backgroundColor);
@@ -172,7 +173,7 @@ function homeScreen(){
     fill(100);
     text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-160);
     text('                                   Press the SPACE bar to restart current level',10,height-140);
-    text('             Press the BACKSPACE bar to restart whole game and return to this page',10,height-120);
+    text('  Press the SPACE bar then the BACKSPACE bar to restart game and return to this page',10,height-120);
     text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',10,height-100);
     text('                    Bright colorful squares are powerups used to increase score by 2',10,height-80);
     text('                    Bright colorful triangles are powerups used to reset lives back to 5',10,height-60);
@@ -274,18 +275,18 @@ function powerAndObs(){
     
     if (level1){
     let scoreInc = collideRectRect(powers.x, powers.y, 15, 15, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
-    if(scoreInc){
-      score += 2;
-      powers.x = random(width);
-      powers.y = random(height);
-    }
+      if(scoreInc){
+        score += 2;
+        powers.x = random(width);
+        powers.y = random(height);
+      }
     } else if (level2){
       let scoreInc = collideRectRect(powers.x, powers.y, 7, 7, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
       if(scoreInc){
-      score += 2;
-      powers.x = random(width);
-      powers.y = random(height);
-    }
+        score += 2;
+        powers.x = random(width);
+        powers.y = random(height);
+      }
     }
   }
   
@@ -329,20 +330,20 @@ function powerAndObs(){
     let scoreInc = collideRectRect(theObs.x, theObs.y, theObs.rectWidth, theObs.rectHeight, playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
     if (level1) {
       if(scoreInc){
-      score = 0;
-      theObs.x = random(width);
-      theObs.y = random(height);
-      theObs.rectWidth = random(10,16);
-      theObs.rectHeight = random(5,10);
-    }
+        score = 0;
+        theObs.x = random(width);
+        theObs.y = random(height);
+        theObs.rectWidth = random(10,16);
+        theObs.rectHeight = random(5,10);
+      }
     } else if (level2) {
       if(scoreInc){
-      score = 0;
-      theObs.x = random(width);
-      theObs.y = random(height);
-      theObs.rectWidth = random(25,40);
-      theObs.rectHeight = random(20,30);
-    }
+        score = 0;
+        theObs.x = random(width);
+        theObs.y = random(height);
+        theObs.rectWidth = random(25,40);
+        theObs.rectHeight = random(20,30);
+      }
     }
   }
 }
@@ -361,6 +362,9 @@ function keyPressed() {
     restartGame();
   }else if (keyCode === BACKSPACE) {
     home = true;
+    level1 = false;
+    level2 = false;
+    level3 = false;
     button1.position(230, 260);
     button2.position(220, 290);
     button3.position(230, 320);
