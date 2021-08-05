@@ -80,11 +80,9 @@ function setup() {
 function draw() {
   background(backgroundColor); //random(50,100)
   
-  if(home){
+  if(home || (home && (level1 || level2 || level3))){
     homeScreen();
-  }
-    
-  if(!home){
+  }else if(!home){
     if (level1 || level2) {
       background(backgroundColor);
       playerSnake.moveSelf();
@@ -97,6 +95,7 @@ function draw() {
       displayText();
       displayNoise();
       handleTime();
+      
     } else if (level3) {
        // background(random(20,100));
         mazeCreation();
@@ -362,7 +361,6 @@ function keyPressed() {
     restartGame();
   }else if (keyCode === BACKSPACE) {
     home = true;
-    homeScreen();
     button1.position(230, 260);
     button2.position(220, 290);
     button3.position(230, 320);
