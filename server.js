@@ -15,8 +15,9 @@ class Snake{
   }
 }
 
+const port = process.env.PORT || 3000;
 let app = express();
-let server = app.listen(3000);
+let server = app.listen(port);
 
 app.use(express.static('public')); //"static" to host static files
 
