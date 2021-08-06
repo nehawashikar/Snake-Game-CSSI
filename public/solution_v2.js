@@ -29,7 +29,7 @@ function setup() {
   frameRate(6);
 
   classifier.classify(gotResult); // voice control
-  socket = io.connect('https://cssi-snakes.herokuapp.com/'); // add web socket
+  socket = io.connect('https://cssi-snakes.herokuapp.com/'); // add web socket 'http://localhost:3000'
 
   playerSnake = new Snake();
   let data = {
@@ -67,21 +67,21 @@ function setup() {
 
   //create power ups
   power = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     let p = new PowerUpTime();
     power.push(p);
   }
 
   //create power ups
   power2 = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     let p2 = new PowerUpResetLives();
     power2.push(p2);
   }
 
   //create obstacles
   obs = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     let o = new Obstacle();
     obs.push(o);
   }
@@ -110,24 +110,26 @@ function draw() {
     playerSnake.checkCollisions();
     playerSnake.checkApples();
 
-    for (let i = snakes.length - 1; i >= 0; i--) {
+    /*for (let i = snakes.length - 1; i >= 0; i--) {
       let id = snakes[i].id;
       if (id.substring(2, id.length) !== socket.id) stroke(240, 100, 100);
       noFill();
       rect(playerSnake.x, playerSnake.y, playerSnake.size, playerSnake.size);
-      noStroke();
+      noStroke();*/
 
       for (let i = 0; i < snakes.length; i++){
         let id = snakes[i].id
         if (id.substring(2, id.length) !== socket.id)
           stroke(240, 100, 100);
-          noFill();
+          fill(106, 100, 100);
           rect(snakes[i].x, snakes[i].y, snakes[i].size, snakes[i].size);
-          noStroke();
-          for (let i = 0; i < playerSnake.tail.length; i++) {
-            playerSnake.tail[i].showSelf();
+          snakes[i].tail = [new TailSegment(snakes[i].x, snakes[i].y)];
+            for (let i = 0; i < playerSnake.tail.length; i++) {
+              playerSnake.tail[i].showSelf();
           }
-        }
+        //}
+        //let lastTailSegment = snakes[i].tail[snakes[i].tail.length - 1];
+      //  snakes[i].tail.push(new TailSegment(lastTailSegment.x, lastTailSegment.y));
 
       let data = {
         x: playerSnake.x,
@@ -139,7 +141,15 @@ function draw() {
       };
 
       socket.emit("update", data);
-
+      /*if (time>= 10 && playerSnake.x == snakes[i].x && playerSnake.y == snakes[i].y) {
+        score ++;
+        text('Opponent! +1', snakes[i].x, snakes[i].y)
+      }
+      if (time>= 10 && snakes[i].x == playerSnake.x && snakes[i].y == playerSnake.y) {
+        score ++;
+        text('Opponent! +1', snakes[i].x, snakes[i].y)
+      }*/
+    }
       currentApple.showSelf();
       displayText();
       displayNoise();
@@ -149,7 +159,7 @@ function draw() {
       } else if (level3) {
         mazeCreation();
       }
-    }
+
     // when to win game
     if (lives > 0 && score >= 10 && counter > 0) {
       fill(random(360), 50, 100);
@@ -553,7 +563,7 @@ class Snake {
         if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
           gameIsOver = true;
         }
-        text(i, this.tail[i].x, this.tail[i].y);
+        //text(i, this.tail[i].x, this.tail[i].y);
       }
     }
   }
