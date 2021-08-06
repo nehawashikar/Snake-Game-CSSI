@@ -29,7 +29,7 @@ function setup() {
   frameRate(6);
 
   classifier.classify(gotResult); // voice control
-  socket = io.connect('https://cssi-snakes.herokuapp.com/'); // add web socket 'http://localhost:3000'
+  socket = io.connect('https://cssi-snakes.herokuapp.com/'); // add web socket 'http://localhost:3000' 
 
   playerSnake = new Snake();
   let data = {
@@ -141,7 +141,7 @@ function draw() {
       };
 
       socket.emit("update", data);
-      if (time>= 10 && playerSnake.x == snakes[i].x && playerSnake.y == snakes[i].y) {
+    if (time>= 10 && playerSnake.x == snakes[i].x && playerSnake.y == snakes[i].y) {
         gameOver();
       }
       /*if (time>= 10 && snakes[i].x == playerSnake.x && snakes[i].y == playerSnake.y) {
