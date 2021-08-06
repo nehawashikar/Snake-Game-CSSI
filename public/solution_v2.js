@@ -141,11 +141,10 @@ function draw() {
       };
 
       socket.emit("update", data);
-      /*if (time>= 10 && playerSnake.x == snakes[i].x && playerSnake.y == snakes[i].y) {
-        score ++;
-        text('Opponent! +1', snakes[i].x, snakes[i].y)
+      if (time>= 10 && playerSnake.x == snakes[i].x && playerSnake.y == snakes[i].y) {
+        gameOver();
       }
-      if (time>= 10 && snakes[i].x == playerSnake.x && snakes[i].y == playerSnake.y) {
+      /*if (time>= 10 && snakes[i].x == playerSnake.x && snakes[i].y == playerSnake.y) {
         score ++;
         text('Opponent! +1', snakes[i].x, snakes[i].y)
       }*/
