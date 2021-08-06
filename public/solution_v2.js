@@ -29,7 +29,7 @@ function setup() {
   frameRate(6);
 
   classifier.classify(gotResult); // voice control
-  socket = io.connect('https://cssi-snakes.herokuapp.com/'); // add web socket 'http://localhost:3000' 
+  socket = io.connect('https://cssi-snakes.herokuapp.com/'); // add web socket 'http://localhost:3000'
 
   playerSnake = new Snake();
   let data = {
@@ -529,6 +529,9 @@ class Snake {
   checkApples() {
     if (collideRectRect(this.x, this.y, this.size, this.size, currentApple.x, currentApple.y, currentApple.size, currentApple.size)) {
       score += 1;
+      if (level2) {
+        playerSnake.speed += 1;
+      }
       currentApple = new Apple();
       this.extendTail();
     }
